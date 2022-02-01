@@ -424,7 +424,14 @@ namespace Microsoft.PowerFx
 
         public override FormulaValue Visit(ChainingNode node, SymbolContext context)
         {
-            return CommonErrors.NotYetImplementedError(node.IRContext, "Expression chaining");
+            FormulaValue result = null;
+            foreach (var child in node.Nodes)
+            {
+                result = child.Accept(this, context);
+            }
+
+            //return CommonErrors.NotYetImplementedError(node.IRContext, "Expression chaining");
+            return result;
         }
 
         public override FormulaValue Visit(ResolvedObjectNode node, SymbolContext context)

@@ -143,7 +143,7 @@ namespace Microsoft.PowerFx
 
             var formula = new Formula(expressionText);
 
-            formula.EnsureParsed(TexlParser.Flags.None);
+            formula.EnsureParsed(TexlParser.Flags.EnableExpressionChaining);
 
             // Ok to continue with binding even if there are parse errors. 
             // We can still use that for intellisense. 
