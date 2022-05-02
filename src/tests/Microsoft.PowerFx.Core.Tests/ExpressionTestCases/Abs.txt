@@ -85,5 +85,5 @@ false
 8409
 
 //Excel returns false, as the value of Abs(Date(2022, 10, 1)) in Excel is 44835 in General format, while in Date format its 10/1/2022
->> Abs(Date(2022, 10, 1)) = 1664607600000
+>> Abs(Date(2022, 10, 1)) = 44835
 true

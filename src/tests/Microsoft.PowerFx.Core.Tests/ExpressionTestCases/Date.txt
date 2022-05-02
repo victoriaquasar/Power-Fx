@@ -364,14 +364,14 @@ Date(1960,7,31)
 
 //Relative Year Parameter: 1900+YearValue
 >> Date(100,1,1)
-Date(2000,1,1)
+Date(100,1,1)
 
 >> Date(76,7,4)
-Date(1976,7,4)
+Date(76,7,4)
 
 // Out-of-range Year Parameter (Year value less than 0 or more than 9999)
 >> Date(-1,1,1)
-#Error(Kind=InvalidArgument)
+#Error(Kind=Numeric)
 
 >> Date(10000,1,1)
 #Error(Kind=InvalidArgument)
@@ -405,7 +405,7 @@ Date(2012,10,8)
 
 // 0 as Year,Month and Date value
 >> Date(0,0,0)
-Date(1899,11,30)
+#Error(Kind=InvalidArgument)
 
 
 // ******** DECIMAL PARAMETERS ********
@@ -442,12 +442,12 @@ Blank()
 #Error(Kind=Div0)
 
 >> Date(-1,1,1/0)
-#Error(Kind=Div0)
+#Error(Kind=Numeric, Div0)
 
 // ******** STRING PARAMETERS ********
 
 >> Date("a","b","c")
-#Error(Kind=InvalidArgument)
+#Error(Kind=InvalidArgument, InvalidArgument, InvalidArgument)
 
 >> Date("1900","5","14")
 Date(1900,5,14)
@@ -465,15 +465,14 @@ Date(1974,12,31)
 Date(1974,11,30)
 
 >> Date(true,true,true)
-Date(1901,1,1)
+Date(1,1,1)
 
-//Excel returns Error for above parameters, while PowerFx considers above as Date(0,0,0) and returns the expected value
+//Excel returns Error for above parameters, while PowerFx considers Date(0,0,0) and returns an error as year 0 isn't supported
 >> Date(false,false,false)
-Date(1899,11,30)
-
->> Date("1975","true","false")
 #Error(Kind=InvalidArgument)
 
+>> Date("1975","true","false")
+#Error(Kind=InvalidArgument, InvalidArgument)
 
 // ******** FUNCTION VALUE AS PARAMETERS ********
 
@@ -485,4 +484,3 @@ Date(1960,11,17)
 
 >> Date(1960,6,Day("11/29/2022"))
 Date(1960,6,29)
-
