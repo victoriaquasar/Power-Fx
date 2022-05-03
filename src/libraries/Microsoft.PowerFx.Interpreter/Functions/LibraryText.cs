@@ -98,7 +98,7 @@ namespace Microsoft.PowerFx.Functions
             {
                 return DateTimeToNumber(irContext, new DateTimeValue[] { dtv });
             }
-            
+
             string str = null;
 
             if (arg0 is StringValue sv)
@@ -113,101 +113,176 @@ namespace Microsoft.PowerFx.Functions
 
             var (val, err) = ConvertToNumber(str, runner.CultureInfo);
 
-            switch (err)
+            if (err == ConvertionStatus.Ok)
             {
-                case ConvertionStatus.CannotParse:
-                case ConvertionStatus.DoubleSign:
-                case ConvertionStatus.DoublePercent:
-                case ConvertionStatus.NoNumber:
-                    return CommonErrors.InvalidNumberFormatError(irContext);
-
-                case ConvertionStatus.InvalidNumber:
-                    return CommonErrors.ArgumentOutOfRange(irContext);
-
-                case ConvertionStatus.Ok:
-                    return new NumberValue(irContext, val);
+                return new NumberValue(irContext, val);
             }
 
-            throw new NotImplementedException("Unknown ConvertionStatus value");
+            return CommonErrors.ArgumentOutOfRange(irContext);
         }
 
+        // Converts numbers that can be signed and be percentages
         private static (double, ConvertionStatus) ConvertToNumber(string str, CultureInfo culture)
         {
-            double div = 1;
-            var loop = true;
-            var signFound = false;
-            var percentFound = false;
+            str = str.Trim();
 
-            while (loop)
+            if (string.IsNullOrEmpty(str))
             {
-                loop = false;
-                str = str.Trim();
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
 
-                if (string.IsNullOrEmpty(str))
+            var startingPercent = str[0] == '%';
+            var endingPercent = str[str.Length - 1] == '%';
+
+            if (startingPercent || endingPercent)
+            {
+                if (startingPercent && endingPercent)
                 {
-                    return (0d, ConvertionStatus.NoNumber);
+                    return (0d, ConvertionStatus.InvalidNumber);
                 }
 
-                if (str[str.Length - 1] == '%')
-                {
-                    if (percentFound)
-                    {
-                        return (0d, ConvertionStatus.DoublePercent);
-                    }
+                var pct = ConvertPercentageToNumber(startingPercent ? str.Substring(1) : str.Substring(0, str.Length - 1), culture);
+                return (pct.Item1 / 100d, pct.Item2);
+            }                                 
 
-                    str = str.Substring(0, str.Length - 1);
-                    div *= 100;
-                    percentFound = loop = true;
+            return ConvertPossiblySignedNumberNoPercentage(str, culture);
+        }
+
+        // Converts numbers that are already identified as percentages
+        private static (double, ConvertionStatus) ConvertPercentageToNumber(string str, CultureInfo culture)
+        {
+            str = str.Trim();
+
+            if (string.IsNullOrEmpty(str))
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
+
+            if (str[0] == '%' || str[str.Length - 1] == '%')
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
+
+            if (str[0] == '+')
+            {
+                return ConvertSignedNumberNoPercentage(str.Substring(1), culture);
+            }
+
+            if (str[0] == '-')
+            {
+                var sn = ConvertSignedNumberNoPercentage(str.Substring(1), culture);
+                return (-sn.Item1, sn.Item2);
+            }
+
+            return ConvertPossiblySignedNumberNoPercentage(str, culture);
+        }
+
+        private static (double, ConvertionStatus) ConvertPossiblySignedNumberNoPercentage(string str, CultureInfo culture)
+        {
+            str = str.Trim();
+
+            if (string.IsNullOrEmpty(str))
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
+
+            if (str[0] == '+')
+            {
+                return ConvertSignedNumberPossiblyPercent(str.Substring(1), culture);
+            }
+
+            if (str[0] == '-')
+            {
+                var sn = ConvertSignedNumberPossiblyPercent(str.Substring(1), culture);
+                return (-sn.Item1, sn.Item2);
+            }
+
+            return ConvertUnsignedNoPercentNumber(str, culture);
+        }
+
+        private static (double, ConvertionStatus) ConvertSignedNumberPossiblyPercent(string str, CultureInfo culture)
+        {
+            str = str.Trim();
+
+            if (string.IsNullOrEmpty(str))
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
+
+            if (str[0] == '+' || str[0] == '-')
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
+
+            var startingPercent = str[0] == '%';
+            var endingPercent = str[str.Length - 1] == '%';
+
+            if (startingPercent || endingPercent)
+            {
+                if (startingPercent && endingPercent)
+                {
+                    return (0d, ConvertionStatus.InvalidNumber);
                 }
-                else if (str[0] == '%')
-                {
-                    if (percentFound)
-                    {
-                        return (0d, ConvertionStatus.DoublePercent);
-                    }
 
-                    str = str.Substring(1, str.Length - 1);
-                    div *= 100;
-                    percentFound = loop = true;
-                }
-                else if (str[0] == '+')
-                {
-                    if (signFound)
-                    {
-                        return (0d, ConvertionStatus.DoubleSign);
-                    }
+                var pct = ConvertUnsignedNoPercentNumber(startingPercent ? str.Substring(1) : str.Substring(0, str.Length - 1), culture);
+                return (pct.Item1 / 100d, pct.Item2);
+            }
 
-                    str = str.Substring(1, str.Length - 1);
-                    signFound = loop = true;
-                }
-                else if (str[0] == '-')
-                {
-                    if (signFound)
-                    {
-                        return (0d, ConvertionStatus.DoubleSign);
-                    }
+            return ConvertUnsignedNoPercentNumber(str, culture);
+        }
 
-                    str = str.Substring(1, str.Length - 1);
-                    div *= -1;
-                    signFound = loop = true;
-                }                
-            }           
+        private static (double, ConvertionStatus) ConvertSignedNumberNoPercentage(string str, CultureInfo culture)
+        {
+            str = str.Trim();
+
+            if (string.IsNullOrEmpty(str))
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
+
+            if (str[0] == '+' || str[0] == '-')
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
+
+            if (str[0] == '%' || str[str.Length - 1] == '%')
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
+
+            return ConvertUnsignedNoPercentNumber(str, culture);
+        }
+
+        private static (double, ConvertionStatus) ConvertUnsignedNoPercentNumber(string str, CultureInfo culture)
+        {
+            str = str.Trim();
+
+            if (string.IsNullOrEmpty(str))
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
+
+            if (str[0] == '+' || str[0] == '-')
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
+
+            if (str[0] == '%' || str[str.Length - 1] == '%')
+            {
+                return (0d, ConvertionStatus.InvalidNumber);
+            }
 
             var err = double.TryParse(str, NumberStyles.Any, culture, out var val);
 
-            return !err ? (0d, ConvertionStatus.CannotParse) :
+            return !err ? (0d, ConvertionStatus.InvalidNumber) :
                    IsInvalidDouble(val) ? (0d, ConvertionStatus.InvalidNumber) :
-                   (val / div, ConvertionStatus.Ok);
+                   (val, ConvertionStatus.Ok);
         }
 
         private enum ConvertionStatus
         {
-            Ok,
-            CannotParse,
-            InvalidNumber,
-            DoubleSign,
-            DoublePercent,
-            NoNumber
+            Ok,           
+            InvalidNumber            
         }
 
         // Convert string to boolean
