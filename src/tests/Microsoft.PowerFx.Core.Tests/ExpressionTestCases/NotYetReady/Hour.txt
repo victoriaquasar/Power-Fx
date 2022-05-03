@@ -135,16 +135,16 @@
 >> Hour(DateAdd(DateTimeValue("1/1/2000 8:00:00:00 AM"), 2,TimeUnit.Hours))
 10
 
->> Hour(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"),60,TimeUnit.Minutes))
+>> Hour(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"),60,TimeUnit.Minutes))
 1
 
->> Hour(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"),36000,TimeUnit.Seconds))
+>> Hour(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"),36000,TimeUnit.Seconds))
 10
 
->> Hour(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"),65,Blank()))
+>> Hour(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"),65,Blank()))
 0
 
->> Hour(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"), Blank()))
+>> Hour(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"), Blank()))
 0
 
 >> Hour(DateAdd(DateTimeValue("1/1/2000 12:00:00:00"), 4, TimeUnit.Hours))
@@ -165,7 +165,7 @@
 >> Hour((60 + TimeValue("12:00:00") + 70))
 12
 
->> Hour((DateTimeValue("1/1/2000 12:00:00:00 AM") - 20) - 30)
+>> Hour((DateTimeValue("1/1/2000 12:00:00 AM") - 20) - 30)
 0
 
 // ******************************** NULL AND ERROR PARAMETERS ********************************

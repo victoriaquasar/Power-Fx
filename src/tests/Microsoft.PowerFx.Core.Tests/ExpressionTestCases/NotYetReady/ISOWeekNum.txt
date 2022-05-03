@@ -1163,7 +1163,7 @@
 >> ISOWeekNum(DateTimeValue("1/7/2021 2:00:00:00"))
 1
 
->> ISOWeekNum(DateTimeValue("1/7/2021 3:00:00:00"))
+>> ISOWeekNum(DateTimeValue("1/7/2021 3:00:00"))
 1
 
 >> ISOWeekNum(DateTimeValue("1/7/2021 4:00:00:00"))

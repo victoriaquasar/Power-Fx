@@ -141,16 +141,16 @@
 >> Minute(DateAdd(DateTimeValue("1/1/2000 8:00:00:00 AM"), 2,TimeUnit.Minutes))
 2
 
->> Minute(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"),60,TimeUnit.Minutes))
+>> Minute(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"),60,TimeUnit.Minutes))
 0
 
->> Minute(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"),460,TimeUnit.Minutes))
+>> Minute(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"),460,TimeUnit.Minutes))
 40
 
->> Minute(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"),65,Blank()))
+>> Minute(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"),65,Blank()))
 0
 
->> Minute(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"), Blank()))
+>> Minute(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"), Blank()))
 0
 
 >> Minute(DateAdd(DateTimeValue("1/1/2000 12:00:00:00"), 4, TimeUnit.Minutes))
@@ -171,7 +171,7 @@
 >> Minute((60 + TimeValue("12:00:00") + 70))
 0
 
->> Minute((DateTimeValue("1/1/2000 12:00:00:00 AM") - 20) - 30)
+>> Minute((DateTimeValue("1/1/2000 12:00:00 AM") - 20) - 30)
 0
 
 // ******************************** NULL AND ERROR PARAMETERS ********************************

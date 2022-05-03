@@ -342,7 +342,7 @@ namespace Microsoft.PowerFx.Functions
                 var result = new DateTime(year, 1, 1).AddMonths(month - 1).AddDays(day - 1);
                 return new DateValue(irContext, result);
             }
-            catch (ArgumentOutOfRangeException _)
+            catch (ArgumentOutOfRangeException)
             {
                 return CommonErrors.ArgumentOutOfRange(irContext);
             }

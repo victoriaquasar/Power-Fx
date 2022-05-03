@@ -30,7 +30,7 @@
 7
 
 // Saturday, Default StartOfWeek (Sunday)
->> Weekday(DateTimeValue("1/1/2022 12:00:00:00 AM"))
+>> Weekday(DateTimeValue("1/1/2022 12:00:00 AM"))
 7
 
 // Sunday, Default StartOfWeek (Sunday)
@@ -249,11 +249,11 @@
 7
 
 // Saturday, Blank StartOfWeek parameter
->> Weekday(DateTimeValue("1/1/2022 12:00:00:00 AM"),Blank())
+>> Weekday(DateTimeValue("1/1/2022 12:00:00 AM"),Blank())
 7
 
 // Saturday, Empty string "" as StartOfWeek parameter
->> Weekday(DateTimeValue("1/1/2022 12:00:00:00 AM"),"")
+>> Weekday(DateTimeValue("1/1/2022 12:00:00 AM"),"")
 7
 
 // Sunday, Blank StartOfWeek parameter

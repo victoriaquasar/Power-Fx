@@ -11534,7 +11534,7 @@
 >> WeekNum(DateTimeValue("1/7/2021 2:00:00:00"),15)
 1
 
->> WeekNum(DateTimeValue("1/7/2021 3:00:00:00"),15)
+>> WeekNum(DateTimeValue("1/7/2021 3:00:00"),15)
 1
 
 >> WeekNum(DateTimeValue("1/7/2021 4:00:00:00"),15)
@@ -11739,11 +11739,11 @@
 2
 
 // Saturday, Blank StartOfWeek parameter
->> WeekNum(DateTimeValue("1/1/2022 12:00:00:00 AM"),Blank())
+>> WeekNum(DateTimeValue("1/1/2022 12:00:00 AM"),Blank())
 1
 
 // Saturday, Empty string "" as StartOfWeek parameter
->> WeekNum(DateTimeValue("1/1/2022 12:00:00:00 AM"),"")
+>> WeekNum(DateTimeValue("1/1/2022 12:00:00 AM"),"")
 1
 
 // Sunday, Blank StartOfWeek parameter

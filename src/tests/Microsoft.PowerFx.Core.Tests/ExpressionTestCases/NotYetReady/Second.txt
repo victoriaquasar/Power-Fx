@@ -135,16 +135,16 @@
 >> Second(DateAdd(DateTimeValue("1/1/2000 8:00:00:00 AM"), 2,TimeUnit.Seconds))
 2
 
->> Second(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"),60,TimeUnit.Seconds))
+>> Second(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"),60,TimeUnit.Seconds))
 0
 
->> Second(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"),460,TimeUnit.Seconds))
+>> Second(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"),460,TimeUnit.Seconds))
 40
 
->> Second(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"),65,Blank()))
+>> Second(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"),65,Blank()))
 0
 
->> Second(DateAdd(DateTimeValue("1/1/2000 12:00:00:00 AM"), Blank()))
+>> Second(DateAdd(DateTimeValue("1/1/2000 12:00:00 AM"), Blank()))
 0
 
 >> Second(DateAdd(DateTimeValue("1/1/2000 12:00:00:00"), 4, TimeUnit.Seconds))
@@ -165,7 +165,7 @@
 >> Second((60 + TimeValue("12:00:00") + 70))
 0
 
->> Second((DateTimeValue("1/1/2000 12:00:00:00 AM") - 20) - 30)
+>> Second((DateTimeValue("1/1/2000 12:00:00 AM") - 20) - 30)
 0
 
 // ******************************** NULL AND ERROR PARAMETERS ********************************

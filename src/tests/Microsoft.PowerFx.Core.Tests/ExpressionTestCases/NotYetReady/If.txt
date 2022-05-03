@@ -22,7 +22,7 @@ Date(4,22,2022)
 12:50 PM
 
 // The first condition is true, and the corresponding DateTimeValue ThenResult is returned.
->> If(DateTimeValue("1/1/2000 12:00:00:00 AM")>Time(12,49,00), DateTimeValue("1/1/2000 12:00:00:00 AM"), Time(12,49,00))
+>> If(DateTimeValue("1/1/2000 12:00:00 AM")>Time(12,49,00), DateTimeValue("1/1/2000 12:00:00 AM"), Time(12,49,00))
 1/1/2000 12:00 AM
 
 //First condition is true, hence the condition in ThenResult branch is evaluated
@@ -184,7 +184,7 @@ true
 74155000
 
 //Number to DateTime Coercion
->> If(false,1,DateTimeValue("1/1/2000 12:00:00:00 AM"))
+>> If(false,1,DateTimeValue("1/1/2000 12:00:00 AM"))
 946713600000
 
 // ***************** FIRST ARGUMENT STRING, SECOND ARGUMENT OTHER DATAYPE *****************
@@ -214,7 +214,7 @@ Date(12,14,2012)
 "12:35 PM"
 
 //String to DateTime Coercion
->> If(false,"Hello",DateTimeValue("1/1/2000 12:00:00:00 AM"))
+>> If(false,"Hello",DateTimeValue("1/1/2000 12:00:00 AM"))
 "1/1/2000 12:00 AM"
 
 // ***************** FIRST ARGUMENT BOOLEAN, SECOND ARGUMENT OTHER DATAYPE *****************
@@ -267,7 +267,7 @@ Date(12,31,1969)
 1/1/1970 12:35 PM
 
 //Date to DateTime Coercion
->> If(false,Date(2012,12,14),DateTimeValue("1/1/2000 12:00:00:00 AM"))
+>> If(false,Date(2012,12,14),DateTimeValue("1/1/2000 12:00:00 AM"))
 1/1/2000 12:00 AM
 
 // ***************** FIRST ARGUMENT TIME, SECOND ARGUMENT OTHER DATAYPE *****************
@@ -297,35 +297,35 @@ Date(12,31,1969)
 2/15/2014 12:00 AM
 
 //Time to DateTime Coercion
->> If(false,Time(12,35,55),DateTimeValue("1/1/2000 12:00:00:00 AM"))
+>> If(false,Time(12,35,55),DateTimeValue("1/1/2000 12:00:00 AM"))
 1/1/2000 12:00 AM
 
 // ***************** FIRST ARGUMENT DATETIME, SECOND ARGUMENT OTHER DATAYPE *****************
 
 //DateTime to DateTime Coercion
->> If(false,DateTimeValue("11/1/2000 12:00:00:00 AM"),DateTimeValue("12/1/2004 12:00:00:00 AM"))
+>> If(false,DateTimeValue("11/1/2000 12:00:00 AM"),DateTimeValue("12/1/2004 12:00:00 AM"))
 12/1/2004 12:00 AM
 
 //DateTime to Number Coercion
->> If(false,DateTimeValue("11/1/2000 12:00:00:00 AM"),1)
+>> If(false,DateTimeValue("11/1/2000 12:00:00 AM"),1)
 12/31/1969 4:00 PM
 
 //DateTime to String Coercion
->> If(false,DateTimeValue("11/1/2000 12:00:00:00 AM"),"Hello")
+>> If(false,DateTimeValue("11/1/2000 12:00:00 AM"),"Hello")
 #Error(Kind=InvalidArgument)
 
 //DateTime to Date Coercion
->> If(false,DateTimeValue("11/1/2000 12:00:00:00 AM"),Date(2014,2,15))
+>> If(false,DateTimeValue("11/1/2000 12:00:00 AM"),Date(2014,2,15))
 2/15/2014 12:00 AM
 
 //DateTime to Date Coercion
->> If(false,DateTimeValue("11/1/2000 12:00:00:00 AM"),DateValue("2/15/2014"))
+>> If(false,DateTimeValue("11/1/2000 12:00:00 AM"),DateValue("2/15/2014"))
 2/15/2014 12:00 AM
 
 //DateTime to Time Coercion
->> If(false,DateTimeValue("11/1/2000 12:00:00:00 AM"),TimeValue("12:35:55"))
+>> If(false,DateTimeValue("11/1/2000 12:00:00 AM"),TimeValue("12:35:55"))
 1/1/1970 12:35 PM
 
 //DateTime to Time Coercion
->> If(false,DateTimeValue("11/1/2000 12:00:00:00 AM"),Time(12,35,55))
+>> If(false,DateTimeValue("11/1/2000 12:00:00 AM"),Time(12,35,55))
 1/1/1970 12:35 PM
