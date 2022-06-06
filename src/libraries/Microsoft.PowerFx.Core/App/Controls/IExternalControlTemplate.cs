@@ -9,6 +9,8 @@ namespace Microsoft.PowerFx.Core.App.Controls
 {
     internal interface IExternalControlTemplate
     {
+        string Name { get; }
+
         ComponentType ComponentType { get; }
 
         bool IncludesThisItemInSpecificProperty { get; }
@@ -40,5 +42,7 @@ namespace Microsoft.PowerFx.Core.App.Controls
         bool TryGetOutputProperty(string name, out IExternalControlProperty externalControlProperty);
 
         bool HasOutput(DName rightName);
+        
+        bool ChildrenShowAllProperties { get; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+using System.Collections.Generic;
 using Microsoft.PowerFx.Core.Entities;
 using Microsoft.PowerFx.Core.Types;
 
@@ -42,8 +43,12 @@ namespace Microsoft.PowerFx.Core.App.Controls
 
         bool IsDescendentOf(IExternalControl controlInfo);
 
+        IEnumerable<IExternalControl> Children { get; }
+
         IExternalRule GetRule(string propertyInvariantName);
 
         bool TryGetRule(string dName, out IExternalRule rule);
+        
+        DType AugmentedExpandoType(bool includeAllProperties);
     }
 }

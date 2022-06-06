@@ -1356,5 +1356,11 @@ namespace Microsoft.PowerFx.Core.Functions
                 }).ToArray()
             };
         }
+
+        internal virtual bool TryGetParameterConstraint(int parameterIndex, out ParameterConstraint constraint)
+        {
+            constraint = null;
+            return false;
+        }
     }
 }
