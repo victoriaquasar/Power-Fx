@@ -449,6 +449,19 @@ namespace Microsoft.PowerFx.Core.Localization
         public static StringGetter IndexArg1 = (b) => StringResources.Get("IndexArg1", b);
         public static StringGetter IndexArg2 = (b) => StringResources.Get("IndexArg2", b);
 
+        public static StringGetter AboutDEC2HEX = (b) => StringResources.Get("AboutDEC2HEX", b);
+        public static StringGetter DEC2HEXArg1 = (b) => StringResources.Get("DEC2HEXArg1", b);
+        public static StringGetter DEC2HEXArg2 = (b) => StringResources.Get("DEC2HEXArg2", b);
+
+        public static StringGetter AboutDEC2HEXT = (b) => StringResources.Get("AboutDEC2HEXT", b);
+        public static StringGetter DEC2HEXTArg1 = (b) => StringResources.Get("DEC2HEXTArg1", b);
+
+        public static StringGetter AboutHEX2DEC = (b) => StringResources.Get("AboutHEX2DEC", b);
+        public static StringGetter HEX2DECArg1 = (b) => StringResources.Get("HEX2DECArg1", b);
+
+        public static StringGetter AboutHEX2DECT = (b) => StringResources.Get("AboutHEX2DECT", b);
+        public static StringGetter HEX2DECTArg1 = (b) => StringResources.Get("HEX2DECTArg1", b);
+
         // Previously, errors were listed here in the form of a StringGetter, which would be evaluated to fetch
         // an error message to pass to the BaseError class constructor. We are switching to passing the message key itself
         // to the BaseError class, and the BaseError itself is responsible for fetching the resource. (This allows the
