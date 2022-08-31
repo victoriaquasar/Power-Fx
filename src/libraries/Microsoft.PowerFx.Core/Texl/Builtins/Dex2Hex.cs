@@ -36,7 +36,7 @@ namespace Microsoft.PowerFx.Core.Texl.Builtins
     }
 
     // Dec2HexT(number:[n], [places:n])
-    internal sealed class Dec2HexTableFunction : BuiltinFunction
+    internal sealed class Dec2HexTFunction : BuiltinFunction
     {
         public override bool IsSelfContained => true;
 
@@ -55,6 +55,5 @@ namespace Microsoft.PowerFx.Core.Texl.Builtins
         {
             yield return new[] { TexlStrings.Dec2HexTArg1 };
         }
-
     }
 }
