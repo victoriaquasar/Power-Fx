@@ -437,9 +437,9 @@ namespace Microsoft.PowerFx.Functions
                     targetFunction: SingleArgTrig("Degrees", x => x * 180.0 / Math.PI))
             },
             {
-                BuiltinFunctionsCore.DEC2HEX,
+                BuiltinFunctionsCore.Dec2Hex,
                 StandardErrorHandling<NumberValue>(
-                    expandArguments: NoArgExpansion,
+                    expandArguments: InsertDefaultValues(outputArgsCount: 2, fillWith: new BlankValue(IRContext.NotInSource(FormulaType.Blank))),
                     replaceBlankValues: ReplaceBlankWithZero,
                     checkRuntimeTypes: ExactValueTypeOrBlank<NumberValue>,
                     checkRuntimeValues: FiniteChecker,
@@ -447,7 +447,7 @@ namespace Microsoft.PowerFx.Functions
                     targetFunction: Dec2Hex
             },
             {
-                BuiltinFunctionsCore.DEC2HEXT,
+                BuiltinFunctionsCore.Dec2HexT,
                 StandardErrorHandlingAsync<TableValue>(
                     expandArguments: NoArgExpansion,
                     replaceBlankValues: ReplaceBlankWithZero,
@@ -602,20 +602,20 @@ namespace Microsoft.PowerFx.Functions
                     targetFunction: Guid_UO)
             },
             {
-                BuiltinFunctionsCore.HEX2DEC,
+                BuiltinFunctionsCore.Hex2Dec,
                 StandardErrorHandling<StringValue>(
                     expandArguments: NoArgExpansion,
-                    replaceBlankValues: ReplaceBlankWithZero,
+                    replaceBlankValues: ReplaceBlankWithEmptyString,
                     checkRuntimeTypes: ExactValueTypeOrBlank<StringValue>,
                     checkRuntimeValues: FiniteChecker,
                     returnBehavior: ReturnBehavior.AlwaysEvaluateAndReturnResult,
                     targetFunction: Hex2Dec
             },
             {
-                BuiltinFunctionsCore.HEX2DECT,
+                BuiltinFunctionsCore.Hex2DecT,
                 StandardErrorHandlingAsync<TableValue>(
                     expandArguments: NoArgExpansion,
-                    replaceBlankValues: ReplaceBlankWithZero,
+                    replaceBlankValues: ReplaceBlankWithEmptyString,
                     checkRuntimeTypes: ExactValueTypeOrBlank<TableValue>,
                     checkRuntimeValues: DeferRuntimeValueChecking,
                     returnBehavior: ReturnBehavior.ReturnBlankIfAnyArgIsBlank,
