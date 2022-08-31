@@ -940,12 +940,29 @@ namespace Microsoft.PowerFx.Functions
         {
             var number = Math.Floor(args[0].Value);
             var places = Math.Floor(args[1].Value);
+
             if (double.IsInfinity(number) || double.IsInfinity(places))
             {
                 return CommonErrors.OverflowError(irContext);
             }
 
-            var result = Math.Floor(number).ToString("X").PadLeft((int)places, '0');
+            var round_places = (int)Math.Floor(places);
+
+            // places need to be non-negative and 10 or less
+            if (round_places < 0 || round_places > 10)
+            {
+                return CommonErrors.GenericInvalidArgument(irContext);
+            }
+
+            var result = Math.Floor(number).ToString("X");
+
+            // places need to be greater or equal to length of hexadecimal when number is positive
+            if (result.Length > round_places && number > 0)
+            {
+                return CommonErrors.GenericInvalidArgument(irContext);
+            }
+
+            result = result.PadLeft(round_places, '0');
         
             return new StringValue(irContext, result);
         }
