@@ -46,7 +46,7 @@ namespace Microsoft.PowerFx.Core.Texl.Builtins
 
         public override bool HasPreciseErrors => true;
 
-        public Dec2HexTableFunction()
+        public Dec2HexTFunction()
             : base("Dec2HexT", TexlStrings.AboutDec2HexT, FunctionCategories.Table, DType.EmptyTable, 0, 1, 1, DType.EmptyTable)
         {
         }
