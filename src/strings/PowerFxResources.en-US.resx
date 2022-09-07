@@ -6529,7 +6529,7 @@
     <comment>Description of 'Dec2HexArg1' function parameter.</comment>
   </data>
   <data name="Dec2HexArg2" xml:space="preserve">
-    <value>number</value>
+    <value>places</value>
   </data>
   <data name="AboutDec2Hex_places" xml:space="preserve">
     <value>A numeric value to add padding to hexadecimal string.</value>
@@ -6542,7 +6542,7 @@
   <data name="Dec2HexTArg1" xml:space="preserve">
     <value>table</value>
   </data>
-  <data name="AboutDec2Hex_table" xml:space="preserve">
+  <data name="AboutDec2HexT_table" xml:space="preserve">
     <value>A column of numeric decimal values to convert to hexadecimals.</value>
     <comment>Description of 'Dec2HexTArg1' function parameter.</comment>
   </data>
@@ -6564,7 +6564,7 @@
   <data name="Hex2DecTArg1" xml:space="preserve">
     <value>table</value>
   </data>
-  <data name="AboutHex2Dec_table" xml:space="preserve">
+  <data name="AboutHex2DecT_table" xml:space="preserve">
     <value>A column of hexadecimal strings to convert to decimals.</value>
     <comment>Description of 'Hex2DecTArg1' function parameter.</comment>
   </data>
