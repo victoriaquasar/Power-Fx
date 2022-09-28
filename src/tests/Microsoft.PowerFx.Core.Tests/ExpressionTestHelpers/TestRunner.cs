@@ -384,6 +384,10 @@ namespace Microsoft.PowerFx.Core.Tests
             {
                 sb.Append($"GUID(\"{gv.Value}\")");
             }
+            else if (result is ColorValue cv)
+            {   
+                sb.Append($"Color [A={cv.Value.A}, R={cv.Value.R}, G={cv.Value.G}, B={cv.Value.B}]");
+            }
             else if (result is ErrorValue)
             {
                 sb.Append(result);

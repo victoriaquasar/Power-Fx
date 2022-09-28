@@ -240,6 +240,28 @@ namespace Microsoft.PowerFx.Functions
                     targetFunction: Concatenate)
             },
             {
+                BuiltinFunctionsCore.ColorValue,
+                StandardErrorHandling<StringValue>(
+                    BuiltinFunctionsCore.ColorValue.Name,
+                    expandArguments: NoArgExpansion,
+                    replaceBlankValues: DoNotReplaceBlank,
+                    checkRuntimeTypes: ExactValueTypeOrBlank<StringValue>,
+                    checkRuntimeValues: DeferRuntimeValueChecking,
+                    returnBehavior: ReturnBehavior.ReturnBlankIfAnyArgIsBlank,
+                    targetFunction: TextToColor)
+            },
+            {
+                BuiltinFunctionsCore.ColorValue_UO,
+                StandardErrorHandling<UntypedObjectValue>(
+                    BuiltinFunctionsCore.ColorValue.Name,
+                    expandArguments: NoArgExpansion,
+                    replaceBlankValues: DoNotReplaceBlank,
+                    checkRuntimeTypes: ExactValueTypeOrBlank<UntypedObjectValue>,
+                    checkRuntimeValues: DeferRuntimeValueChecking,
+                    returnBehavior: ReturnBehavior.ReturnBlankIfAnyArgIsBlank,
+                    targetFunction: ColorValue_UO)
+            },
+            {
                 BuiltinFunctionsCore.ConcatenateT,
                 StandardErrorHandlingAsync(
                     BuiltinFunctionsCore.ConcatenateT.Name,
@@ -1042,6 +1064,17 @@ namespace Microsoft.PowerFx.Functions
                     checkRuntimeValues: ReplaceChecker,
                     returnBehavior: ReturnBehavior.AlwaysEvaluateAndReturnResult,
                     targetFunction: Replace)
+            },
+            {
+                BuiltinFunctionsCore.RGBA,
+                StandardErrorHandling<NumberValue>(
+                    BuiltinFunctionsCore.RGBA.Name,
+                    expandArguments: NoArgExpansion,
+                    replaceBlankValues: ReplaceBlankWithZero,
+                    checkRuntimeTypes: ExactValueTypeOrBlank<NumberValue>,
+                    checkRuntimeValues: DeferRuntimeValueChecking,
+                    returnBehavior: ReturnBehavior.ReturnBlankIfAnyArgIsBlank,
+                    targetFunction: RGBA)
             },
             {
                 BuiltinFunctionsCore.Right,
