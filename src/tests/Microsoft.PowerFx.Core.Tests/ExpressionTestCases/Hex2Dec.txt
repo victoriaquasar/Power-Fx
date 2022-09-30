@@ -2,7 +2,7 @@
 0
 
 >> Hex2Dec(Blank())
-0
+#Error(Kind=InvalidArgument)
 
 // Positive Integer Parameters
 >> Hex2Dec("A5")
@@ -41,7 +41,7 @@
 // ******** NULL and ERROR PARAMETERS ********
 // More than 10 characters
 >> Hex2Dec("FFFFFFFFFFF")
-#Error(Kind=InvalidArgument)
+#Error(Kind=Numeric)
 
 // characters no in 0-9 and A-Z range
 >> Hex2Dec("ZZZZ")
