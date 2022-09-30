@@ -248,7 +248,7 @@ namespace Microsoft.PowerFx.Functions
                     checkRuntimeTypes: ExactValueTypeOrBlank<StringValue>,
                     checkRuntimeValues: DeferRuntimeValueChecking,
                     returnBehavior: ReturnBehavior.ReturnBlankIfAnyArgIsBlank,
-                    targetFunction: TextToColor)
+                    targetFunction: ColorValue)
             },
             {
                 BuiltinFunctionsCore.ColorValue_UO,
