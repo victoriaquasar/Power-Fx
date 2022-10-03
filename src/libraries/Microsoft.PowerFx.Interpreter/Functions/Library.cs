@@ -1523,8 +1523,16 @@ namespace Microsoft.PowerFx.Functions
                 StandardErrorHandlingTabularOverload<NumberValue>(BuiltinFunctionsCore.CharT.Name, SimpleFunctionImplementations[BuiltinFunctionsCore.Char])
             },
             {
+                BuiltinFunctionsCore.Dec2HexT,
+                StandardErrorHandlingTabularOverload<NumberValue>(BuiltinFunctionsCore.Dec2HexT.Name, SimpleFunctionImplementations[BuiltinFunctionsCore.Dec2Hex])
+            },
+            {
                 BuiltinFunctionsCore.ExpT,
                 StandardErrorHandlingTabularOverload<NumberValue>(BuiltinFunctionsCore.ExpT.Name, SimpleFunctionImplementations[BuiltinFunctionsCore.Exp])
+            },
+            {
+                BuiltinFunctionsCore.Hex2DecT,
+                StandardErrorHandlingTabularOverload<NumberValue>(BuiltinFunctionsCore.Hex2DecT.Name, SimpleFunctionImplementations[BuiltinFunctionsCore.Hex2Dec])
             },
             {
                 BuiltinFunctionsCore.IntT,
