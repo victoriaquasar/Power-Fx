@@ -900,7 +900,7 @@ namespace Microsoft.PowerFx.Functions
             var number = Math.Floor(args[0].Value);
             var places = Math.Floor(args[1].Value);
 
-            if (double.IsInfinity(number) || number < min_number || number > max_number || double.IsInfinity(places))
+            if (number < min_number || number > max_number)
             {
                 return CommonErrors.OverflowError(irContext);
             }
@@ -910,7 +910,12 @@ namespace Microsoft.PowerFx.Functions
             // places need to be non-negative and 10 or less
             if (round_places < 0 || round_places > 10)
             {
-                return CommonErrors.GenericInvalidArgument(irContext);
+                return new ErrorValue(irContext, new ExpressionError()
+                {
+                    Message = $"Places should be between 0 and 10",
+                    Span = irContext.SourceContext,
+                    Kind = ErrorKind.Numeric
+                });
             }
 
             var round_number = (long)number;
